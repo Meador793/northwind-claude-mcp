@@ -64,4 +64,23 @@ def get_schema(table: str) -> list[dict]:
     )
 
 
+@mcp.tool()
+def top_customers(n: int = 10) -> list[dict]:
+    """Return the top n customers ranked by total revenue (after discounts)."""
+    n = max(1, min(n, 100))
+    return run_query(
+        "SELECT c.customer_id, c.company_name, "
+        "COUNT(DISTINCT o.order_id) AS orders, "
+        "ROUND(SUM(od.unit_price * od.quantity * (1 - od.discount))::numeric, 2) "
+        "AS total_revenue "
+        "FROM customers c "
+        "JOIN orders o ON o.customer_id = c.customer_id "
+        "JOIN order_details od ON od.order_id = o.order_id "
+        "GROUP BY c.customer_id, c.company_name "
+        "ORDER BY total_revenue DESC "
+        "LIMIT %s",
+        (n,),
+    )
+
+
 mcp.run()
