@@ -1,0 +1,27 @@
+{
+  "mcpServers": {
+    "postgres-server": {
+      "type": "stdio",
+      "command": "C:/dev/northwind-mcp/.venv/Scripts/python.exe",
+      "args": ["C:/dev/northwind-mcp/postgres-mcp-server/main.py"]
+    },
+    "github": {
+      "type": "http",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PAT}"
+      }
+    },
+    "filesystem": {
+      "type": "stdio",
+      "command": "cmd",
+      "args": [
+        "/c",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "C:/dev/northwind-mcp"
+      ]
+    }
+  }
+}
