@@ -4,7 +4,8 @@ Connects Claude to three things through the Model Context Protocol (MCP): a
 PostgreSQL database (the Northwind sample data), GitHub, and the local
 filesystem. With all three available in one session, Claude can answer a
 question about the data, look at the code or files around it, and work with the
-repo without me copying anything between tools.
+repo without me copying anything between tools.<img width="545" height="322" alt="image" src="https://github.com/user-attachments/assets/daf28c82-a258-4875-85f6-513fc09ff949" />
+
 
 ## Setup
 
